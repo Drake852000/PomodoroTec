@@ -181,14 +181,22 @@ class PomodoroViewModel(application: Application) : AndroidViewModel(application
         )
 
         val customTitle = when (_currentPhase.value) {
-            Phase.FOCUS -> "🎯 ¡Tiempo de Concentración!"
-            Phase.BREAK -> "☕ ¡Momento de Descanso!"
+            Phase.FOCUS -> "🔥 ¡Conquista tu objetivo!"
+            Phase.BREAK -> "🌈 ¡Break zen activado!"
             else -> title
         }
         val formattedTime = _timeLeft.value?.let { if (it != "00:00") it else "Finalizado" } ?: "25:00"
         val customMessage = when (_currentPhase.value) {
-            Phase.FOCUS -> "⏰ Restan $formattedTime\n💪 ¡Mantén el enfoque!"
-            Phase.BREAK -> "⏰ Restan $formattedTime\n🧘‍♂️ ¡Relájate unos minutos!"
+            Phase.FOCUS -> """
+        🎧 Enfócate y brilla
+        ⏱️ Tiempo restante: $formattedTime
+        💡 ¡Eres imparable!
+    """.trimIndent()
+            Phase.BREAK -> """
+        🌿 Respira profundo
+        ⏱️ Tiempo restante: $formattedTime
+        🍵 Relájate, ¡te lo mereces!
+    """.trimIndent()
             else -> message
         }
         val bigImage = BitmapFactory.decodeResource(
